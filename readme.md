@@ -1,4 +1,4 @@
-#simpleTemplate.js
+﻿#simpleTemplate.js
 
 简单易懂的字符串模板渲染方案。
 
@@ -243,7 +243,7 @@ html = template.render();
 
 显然如果字符串参数含有`|`或空格，则需要用双引号`"`括起来。
 
-[内置过滤器列表](#)
+[内置过滤器列表](https://github.com/exoticknight/simpleTemplate.js/wiki/Filter)
 
 过滤器功能的加入令判断功能更灵活。
 
