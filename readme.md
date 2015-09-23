@@ -56,7 +56,7 @@ html = template.render();
 </script>
 ```
 
-渲染默认会对输出的内容作html escape处理，如果你输出原字符串则使用`#`。
+渲染默认会对输出的内容作html escape处理，如果要输出原始字符串则使用`#`。
 
 模板
 
@@ -75,10 +75,10 @@ html = template.render();
 结果
 
 ```markup
-<p>&lt;hr&gt;</p>
+<p><hr></p>
 ```
 
-##进阶示例（regular版追加功能）
+##进阶示例（normal版追加功能）
 
 ###多层数据
 
@@ -204,7 +204,7 @@ html = template.render();
 
 ```markup
 <p>outer</p>
-<p>inner</p> 
+<p>inner</p>
 ```
 
 ##高阶示例（advanced版追加功能）
@@ -343,6 +343,11 @@ in '*||'
 以上是缺失了过滤器。
 
 ##历史
+
+###bare v1.4 / normal v0.10.0 / advanced v0.4.0
+    regular 更名为 normal
+    重写 escapeHTML
+    全部版本加入 Universal Module Definition 支持
 
 ###bare v1.2 / regular v0.9.4 / advanced v0.3
     在regular的基础上新增过滤器和错误提示功能，分化出advanced版

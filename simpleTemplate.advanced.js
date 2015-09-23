@@ -3,9 +3,31 @@
  * author: exotcknight
  * email: draco.knight0@gmail.com
  * license: MIT
- * version: 0.3
+ * version: 0.4.0
 */
-(function ( window, document, undefined ) {
+;(function ( root, name, definition ) {
+    if ( typeof define === 'function' && define.amd ) {
+        define( [], function () {
+            return ( root[name] = definition( root ) );
+        });
+    } else if ( typeof module === 'object' && module.exports ) {
+        module.exports = definition( root );
+    } else {
+        root[name] = definition( root );
+    }
+})( this, 'simpleTemplate', function ( root ) {
+
+var document = root.document;
+
+// code from https://github.com/janl/mustache.js/blob/master/mustache.js#L60
+var entityMap = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+    '/': '&#x2F;'
+};
 
 // Thank you, Douglas Crockford.
 if ( typeof Object.create !== 'function' ) {
@@ -27,12 +49,12 @@ if ( !String.prototype.trim ) {
 // utils
 var utils = {
     escapeHTML: function ( str ) {
-        var div = document.createElement( 'div' );
-        div.appendChild( document.createTextNode( str ) );
-        return div.innerHTML;
+        return String( str ).replace( /[&<>"'\/]/g, function ( s ) {
+            return entityMap[s];
+        });
     },
 
-    date2str: function( date, format ) {
+    date2str: function ( date, format ) {
         var z = {
             'M': date.getMonth() + 1,
             'd': date.getDate(),
@@ -152,6 +174,7 @@ var error = function ( level, type, location, message ) {
 getDataViaPath = function ( path, json ) {
     var fieldPath = path.split( '.' ),
         data = json,
+        index,
         indexLength;
 
     for ( index = 0, indexLength = fieldPath.length; index < indexLength; index++ ) {
@@ -289,7 +312,7 @@ renderTemplate = function ( template, scope, start, end ) {
         field = fields[i];
         data = evaluateStatement( field[1], scope, filters );
         switch ( field[0] ) {
-            case '=': // escaping data 
+            case '=': // escaping data
             tempFragment += utils.escapeHTML( data );
             break;
 
@@ -359,13 +382,12 @@ var simpleTemplate = function ( OriginalStr, prefix, suffix ) {
         lastIndex = 0,
         flags = [],
         loops = [],
-        str,
         mark,
         key,
         statement,
         field;
 
-    str = OriginalStr.replace( nextLineRe, '' );
+    var str = OriginalStr.replace( nextLineRe, '' );
 
     while ( ( mark = statementRe.exec( str ) ) !== null ) {
         /*
@@ -383,7 +405,7 @@ var simpleTemplate = function ( OriginalStr, prefix, suffix ) {
 
         switch ( key ) {
             case '>':
-            loops.push( fields.length-1 );
+            loops.push( fields.length - 1 );
             break;
 
             case '<':
@@ -475,11 +497,10 @@ var simpleTemplate = function ( OriginalStr, prefix, suffix ) {
         },
 
         version: function () {
-            return 'advanced v0.3';
+            return 'advanced v0.4.0';
         }
     };
 }
 
-window.simpleTemplate = simpleTemplate;
-
-})( window, document )
+return simpleTemplate;
+});

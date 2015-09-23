@@ -1,11 +1,39 @@
 /*
- * simpleTemplate.regular.js
+ * simpleTemplate.normal.js
  * author: exotcknight
  * email: draco.knight0@gmail.com
  * license: MIT
- * version: 0.9.4
+ * version: 0.10.0
 */
-(function ( window, document, undefined ) {
+;(function ( root, name, definition ) {
+    if ( typeof define === 'function' && define.amd ) {
+        define( [], function () {
+            return ( root[name] = definition( root ) );
+        });
+    } else if ( typeof module === 'object' && module.exports ) {
+        module.exports = definition( root );
+    } else {
+        root[name] = definition( root );
+    }
+})( this, 'simpleTemplate', function ( root ) {
+
+var document = root.document;
+
+// code from https://github.com/janl/mustache.js/blob/master/mustache.js#L60
+var entityMap = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+    '/': '&#x2F;'
+};
+
+var escapeHTML = function ( string ) {
+    return String( string ).replace( /[&<>"'\/]/g, function ( s ) {
+        return entityMap[s];
+    });
+};
 
 // Thank you, Douglas Crockford.
 if ( typeof Object.create !== 'function' ) {
@@ -20,6 +48,7 @@ if ( typeof Object.create !== 'function' ) {
 var getDataViaPath = function ( path, json ) {
     var fieldPath = path.split( '.' ),
         data = json,
+        index,
         indexLength;
 
     for ( index = 0, indexLength = fieldPath.length; index < indexLength; index++ ) {
@@ -33,12 +62,6 @@ var getDataViaPath = function ( path, json ) {
     }
 
     return typeof data === 'function' ? data.call( json/* maybe better than 'data' */ ) : data;
-},
-
-escapeHTML = function ( str ) {
-    var div = document.createElement( 'div' );
-    div.appendChild( document.createTextNode( str ) );
-    return div.innerHTML;
 },
 
 renderTemplate = function ( template, scope, start, end ) {
@@ -57,7 +80,7 @@ renderTemplate = function ( template, scope, start, end ) {
         field = fields[i];
         data = getDataViaPath( field[1], scope );
         switch ( field[0] ) {
-            case '=': // escaping data 
+            case '=': // escaping data
             tempFragment += escapeHTML( data );
             break;
 
@@ -129,7 +152,7 @@ var simpleTemplate = function ( OriginalStr, prefix, suffix ) {
         loop,
         mark;
 
-    str = OriginalStr.replace( nextLineRe, '' );
+    var str = OriginalStr.replace( nextLineRe, '' );
 
     while ( ( mark = fieldRe.exec( str ) ) !== null ) {
         /*
@@ -144,7 +167,7 @@ var simpleTemplate = function ( OriginalStr, prefix, suffix ) {
 
         switch ( mark[1] ) {
             case '>':
-            loops.push( fields.length-1 );
+            loops.push( fields.length - 1 );
             break;
 
             case '<':
@@ -227,11 +250,10 @@ var simpleTemplate = function ( OriginalStr, prefix, suffix ) {
         },
 
         version: function () {
-            return 'regular v0.9.4';
+            return 'normal v0.10.0';
         }
     };
 }
 
-window.simpleTemplate = simpleTemplate;
-
-})( window, document )
+return simpleTemplate;
+});

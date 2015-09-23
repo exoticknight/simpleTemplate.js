@@ -3,15 +3,37 @@
  * author: exotcknight
  * email: draco.knight0@gmail.com
  * license: MIT
- * version: 1.2
+ * version: 1.4
 */
-(function ( window, document, undefined ) {
+;(function ( root, name, definition ) {
+    if ( typeof define === 'function' && define.amd ) {
+        define( [], function () {
+            return ( root[name] = definition( root ) );
+        });
+    } else if ( typeof module === 'object' && module.exports ) {
+        module.exports = definition( root );
+    } else {
+        root[name] = definition( root );
+    }
+})( this, 'simpleTemplate', function ( root ) {
 
-var escapeHTML = function ( str ) {
-    var div = document.createElement( 'div' );
-    div.appendChild( document.createTextNode( str ) );
-    return div.innerHTML;
-},
+var document = root.document;
+
+// code from https://github.com/janl/mustache.js/blob/master/mustache.js#L60
+var entityMap = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+    '/': '&#x2F;'
+};
+
+var escapeHTML = function ( string ) {
+    return String( string ).replace( /[&<>"'\/]/g, function ( s ) {
+        return entityMap[s];
+    });
+};
 
 renderTemplate = function ( template, scope, start, end ) {
     var tempFragment = '',
@@ -89,11 +111,10 @@ var simpleTemplate = function ( OriginalStr, prefix, suffix ) {
         },
 
         version: function () {
-            return 'bare v1.2';
+            return 'bare v1.4';
         }
     };
 }
 
-window.simpleTemplate = simpleTemplate;
-
-})( window, document )
+return simpleTemplate;
+});
