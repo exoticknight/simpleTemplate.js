@@ -1,4 +1,4 @@
-﻿#simpleTemplate.js
+﻿#simpleTemplate.js [![Build Status](https://travis-ci.org/exoticknight/simpleTemplate.js.svg?branch=master)](https://travis-ci.org/exoticknight/simpleTemplate.js)
 
 简单易懂的字符串模板渲染方案。
 
