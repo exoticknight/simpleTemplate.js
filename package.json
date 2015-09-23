@@ -1,0 +1,30 @@
+{
+  "name": "simple-template.js",
+  "version": "1.0.0",
+  "description": "simple string template that easy to use",
+  "main": " ",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exoticknight/simpleTemplate.js.git"
+  },
+  "keywords": [
+    "html",
+    "template"
+  ],
+  "author": "exoticknight",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/exoticknight/simpleTemplate.js/issues"
+  },
+  "homepage": "https://github.com/exoticknight/simpleTemplate.js#readme",
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "mocha": "^2.3.3"
+  }
+}
