@@ -1,4 +1,6 @@
-﻿#simpleTemplate.js [![Build Status](https://travis-ci.org/exoticknight/simpleTemplate.js.svg?branch=master)](https://travis-ci.org/exoticknight/simpleTemplate.js)
+﻿#simpleTemplate.js
+
+[![Build Status](https://travis-ci.org/exoticknight/simpleTemplate.js.svg?branch=master)](https://travis-ci.org/exoticknight/simpleTemplate.js) [![codecov.io](https://codecov.io/github/exoticknight/simpleTemplate.js/coverage.svg?branch=master)](https://codecov.io/github/exoticknight/simpleTemplate.js?ref=master)
 
 简单易懂的字符串模板渲染方案。
 
