@@ -1,7 +1,9 @@
 language: node_js
 node_js:
   - "0.12"
-before_install:
-  - pip install codecov
-after_success:
-  - codecov
+env:
+  global:
+    - CODECOV_TOKEN: 8ec85194-62c8-4cb2-9ca1-4687209cd04f
+script:
+  - istanbul cover node_modules/mocha/bin/_mocha
+  - cat ./coverage/coverage.json | node_modules/codecov.io/bin/codecov.io.js

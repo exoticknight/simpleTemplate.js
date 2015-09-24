@@ -25,6 +25,8 @@
   "homepage": "https://github.com/exoticknight/simpleTemplate.js#readme",
   "devDependencies": {
     "chai": "^3.3.0",
+    "codecov.io": "^0.1.6",
     "mocha": "^2.3.3"
-  }
+  },
+  "dependencies": {}
 }
