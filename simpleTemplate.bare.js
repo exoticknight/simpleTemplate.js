@@ -43,7 +43,7 @@ renderTemplate = function ( template, scope, start, end ) {
 
     for ( i = start; i < end; i++ ) {
         tempFragment += strings[i];
-        tempFragment += fields[i][0] === '=' ? escapeHTML( scope[fields[i][1]] ) : scope[fields[i][1]];
+        tempFragment += fields[i][0] === '=' ? escapeHTML( scope[fields[i][1]] || '' ) : scope[fields[i][1]] || '';
     }
 
     tempFragment += strings[i];
