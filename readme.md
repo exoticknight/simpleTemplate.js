@@ -350,6 +350,9 @@ in '*||'
 
 ##历史
 
+###bare v1.4.1 / advanced v0.4.1
+    advanced 内置过滤器添加 `now`
+
 ###bare v1.4 / normal v0.10.0 / advanced v0.4.0
     regular 更名为 normal
     重写 escapeHTML
