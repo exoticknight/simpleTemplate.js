@@ -171,12 +171,6 @@ var simpleTemplate = function ( OriginalStr, prefix, suffix ) {
             break;
 
             case '<':
-            // if ( loops[loops.length-1] && loops[loops.length-1][0] === mark[2] ) {
-            //     loop = loops.pop();
-            //     functions['loop'][loop[1]] = fields.length - 1;
-            // } else {
-            //     return;
-            // }
             if ( loops.length > 0 ) {
                 if ( flags.length === 0 || loops[loops.length-1] > flags[flags.length-1] ) {
                     functions['loop'][loops.pop()] = fields.length - 1;
