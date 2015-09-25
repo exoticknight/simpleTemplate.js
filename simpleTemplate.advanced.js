@@ -56,11 +56,11 @@ var utils = {
 
     date2str: function ( date, format ) {
         var z = {
-            'M': date.getMonth() + 1,
-            'd': date.getDate(),
-            'h': date.getHours(),
-            'm': date.getMinutes(),
-            's': date.getSeconds()
+            'M': date.getUTCMonth() + 1,
+            'd': date.getUTCDate(),
+            'h': date.getUTCHours(),
+            'm': date.getUTCMinutes(),
+            's': date.getUTCSeconds()
         };
         format = format.replace( /(M+|d+|h+|m+|s+)/g, function( v ) {
             return ( ( v.length > 1 ? "0" : "" ) + eval( 'z.' + v.slice( -1 ) ) ).slice( -2 );

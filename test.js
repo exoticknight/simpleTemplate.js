@@ -7,7 +7,7 @@ var bare = require( './simpleTemplate.bare.js' ),
 var testData = {
     'text1': 'mocha tastes good, chai tastes good too.',
     'num': 4,
-    'birthday': 689788800000,
+    'birthday': 689817600000,
     'html': '<hr>',
     'mutilline': 'first\nsecond',
     'list': [1, 2, 3],
