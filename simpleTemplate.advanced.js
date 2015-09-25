@@ -140,6 +140,10 @@ var innerFilters = {
         return s.replace( new RegExp( str, 'gm' ), new_str );
     },
     'time': function ( s, format ) {
+        var date = new Date( s );
+        return format ? utils.date2str( date, format ) : date;
+    },
+    'now': function ( s, format ) {
         var date = new Date();
         return format ? utils.date2str( date, format ) : date;
     },
