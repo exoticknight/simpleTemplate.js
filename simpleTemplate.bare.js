@@ -3,7 +3,7 @@
  * author: exotcknight
  * email: draco.knight0@gmail.com
  * license: MIT
- * version: 1.4
+ * version: 1.4.1
 */
 ;(function ( root, name, definition ) {
     if ( typeof define === 'function' && define.amd ) {
@@ -111,7 +111,7 @@ var simpleTemplate = function ( OriginalStr, prefix, suffix ) {
         },
 
         version: function () {
-            return 'bare v1.4';
+            return 'bare v1.4.1';
         }
     };
 }
